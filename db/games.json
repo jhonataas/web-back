@@ -1,0 +1,26 @@
+[
+  {
+    "id": 129035,
+    "name": "League of Legends",
+    "description": "O League of Legends é um jogo eletrônico do gênero multiplayer online battle arena desenvolvido e publicado pela Riot Games. Foi lançado em outubro de 2009 para Microsoft Windows e em março de 2013 para macOS.",
+    "url_image": "https://www.strafe.com/br/apostas-esports/strafe-news/wp-content/uploads/sites/30/Saint-League-of-Legends.jpg"
+  },
+  {
+    "id": 1718753267205,
+    "name": "Minecraft",
+    "description": "Minecraft é um jogo eletrônico sandbox de sobrevivência criado pelo desenvolvedor sueco Markus Persson e posteriormente desenvolvido e publicado pela Mojang Studios, cuja propriedade intelectual foi obtida pela Microsoft em 2014.",
+    "url_image": "https://image.api.playstation.com/vulcan/img/cfn/11307uYG0CXzRuA9aryByTHYrQLFz-HVQ3VVl7aAysxK15HMpqjkAIcC_R5vdfZt52hAXQNHoYhSuoSq_46_MT_tDBcLu49I.png"
+  },
+  {
+    "id": 1719264567645,
+    "name": "Grand Theft Auto V",
+    "description": "Grand Theft Auto V para PC oferece aos jogadores a opção de explorar o gigantesco e premiado mundo de Los Santos e Blaine County em resoluções de até 4K e além, assim como a chance de experimentar o jogo rodando a 60 FPS (quadros por segundo).",
+    "url_image": "https://gamehall.com.br/wp-content/uploads/2013/09/grand-theft-auto-v-wallp-2013.jpg"
+  },
+  {
+    "id": 1720056120672,
+    "name": "Valorant",
+    "description": "Valorant é um jogo eletrônico multijogador gratuito para jogar de tiro em primeira pessoa desenvolvido e publicado pela Riot Games.",
+    "url_image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltc9ebc37d81a976c3/5e8cdc21baf2bd3cc4753c7a/IMAGE_2.jpg"
+  }
+]
