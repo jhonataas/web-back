@@ -26,30 +26,36 @@ router.get('/games', autenticarToken,(req,res) =>{
 
 });
 
-router.put('/update-game', autenticarToken, (req,res) => {
-
-    const {id, name, description, url_image} = req.body;
-
-    const newGame = {
-        id,
-        name,
-        description,
-        url_image
-    }
+router.put('/update-game/:id', autenticarToken, (req, res) => {
+    const { name, description, url_image } = req.body;
+    const gameId = Number(req.params.id); // Converte o ID para número
 
     const acharIndex = (p) => {
-        return p.id === Number(id)
-    }
+        return p.id === gameId;
+    };
 
     const index = games.findIndex(acharIndex);
 
-    games.splice(index,1,newGame);
+    if (index === -1) {
+        return res.status(404).send('Jogo não encontrado!');
+    }
 
-    fs.writeFileSync(bdPath, JSON.stringify(games,null,2));
+    const existingGame = games[index];
+
+    const updatedGame = {
+        ...existingGame, // Mantém as avaliações existentes e outros campos inalterados
+        name,
+        description,
+        url_image
+    };
+
+    games.splice(index, 1, updatedGame);
+
+    fs.writeFileSync(bdPath, JSON.stringify(games, null, 2));
 
     res.status(200).send('Jogo Atualizado!');
-
 });
+
 
 router.post('/create-game', autenticarToken, (req,res) => {
 
@@ -59,7 +65,8 @@ router.post('/create-game', autenticarToken, (req,res) => {
         id, 
         name,
         description,
-        url_image
+        url_image,
+        evaluations: []
     }
     games.push(newGame);
 
@@ -90,24 +97,15 @@ router.delete('/remove-game/:id', autenticarToken, (req,res) => {
 // Obter detalhes do jogo
 // Rota para buscar um jogo pelo ID
 router.get('/games/:id', autenticarToken, (req, res) => {
-    const gameId = Number(req.params.id);
+    const { id } = req.params;
+    console.log(`Requisição recebida para o jogo com ID: ${id}`);
 
-    // Lê o arquivo JSON de forma síncrona
-    try {
-        const gamesData = fs.readFileSync(bdPath, { encoding: 'utf-8' });
-        const games = JSON.parse(gamesData);
+    const acharJogo = games.find(jogo => jogo.id === Number(id));
 
-        // Busca pelo jogo com o ID específico
-        const game = games.find(g => g.id === gameId);
-
-        if (!game) {
-            return res.status(404).json({ message: 'Game not found' });
-        }
-
-        res.json(game);
-    } catch (err) {
-        console.error('Error reading file:', err);
-        res.status(500).json({ message: 'Internal server error' });
+    if (acharJogo) {
+        res.json(acharJogo);
+    } else {
+        res.status(404).json({ message: 'Jogo não encontrado' });
     }
 });
 
