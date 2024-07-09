@@ -91,8 +91,30 @@ router.get('/me', autenticarToken, (req, res) => {
     if (!user) {
         return res.status(404).send('Usuário não encontrado.');
     }
-    res.status(200).json({ id: user.id, username: user.username });
+    res.status(200).json({ id: user.id, username: user.username, email: user.email });
 });
+
+router.post('/change-password', autenticarToken, async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const user = usuariosCadastrados.find(user => user.id === req.user.id);
+
+    if (!user) {
+        return res.status(404).send('Usuário não encontrado.');
+    }
+
+    const passwordValidado = await bcrypt.compare(currentPassword, user.password);
+    if (!passwordValidado) {
+        return res.status(422).send('Senha atual incorreta.');
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const newPasswordCrypt = await bcrypt.hash(newPassword, salt);
+    user.password = newPasswordCrypt;
+
+    fs.writeFileSync(bdPath, JSON.stringify(usuariosCadastrados, null, 2));
+    res.status(200).send('Senha alterada com sucesso.');
+});
+
 
 function autenticarToken(req,res,next){
     const authH = req.headers['authorization'];

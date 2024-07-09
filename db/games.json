@@ -18,6 +18,13 @@
         "comments": "Muito bom, mas poderia ter menos toxicidade.",
         "userId": 4,
         "userName": "maria"
+      },
+      {
+        "id": 3,
+        "rate": "3",
+        "comments": "Fraco",
+        "userId": 6,
+        "userName": "Guilherme Schmidt"
       }
     ],
     "users": [
