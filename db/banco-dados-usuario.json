@@ -16,5 +16,17 @@
     "username": "jhonatasa",
     "email": "jhonataas97@gmail.com",
     "password": "$2b$10$pXbd.SI1GCGjqpU0mbzfSuK9wrLxpvFdYgS9Xuf44msfATZeEgpSq"
+  },
+  {
+    "id": 4,
+    "username": "maria",
+    "email": "maria@gmail.com",
+    "password": "$2b$10$ZdFjLkGu7TevkeUgGj2OOuMt4c9e0/IPypTI27DviVgolUZlsDgI."
+  },
+  {
+    "id": 5,
+    "username": "joao",
+    "email": "joao@gmail.com",
+    "password": "$2b$10$Rl4yCmEj3VWPs6NDinf8x.zVxdaoQ4dtsO1ajItNceN11KfAkE3tm"
   }
 ]

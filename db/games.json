@@ -8,12 +8,26 @@
       {
         "id": 1,
         "rate": 5,
-        "comments": "Excelente jogo!"
+        "comments": "Excelente jogo!",
+        "userId": 3,
+        "userName": "jhonatasa"
       },
       {
         "id": 2,
         "rate": 4,
-        "comments": "Muito bom, mas poderia ter menos toxicidade."
+        "comments": "Muito bom, mas poderia ter menos toxicidade.",
+        "userId": 4,
+        "userName": "maria"
+      }
+    ],
+    "users": [
+      {
+        "id": 3,
+        "name": "jhonatasa"
+      },
+      {
+        "id": 4,
+        "name": "maria"
       }
     ]
   },
@@ -26,17 +40,37 @@
       {
         "id": 1,
         "rate": 5,
-        "comments": "Muito divertido e criativo!"
+        "comments": "Muito divertido e criativo!",
+        "userId": 3,
+        "userName": "jhonatasa"
       },
       {
         "id": 2,
         "rate": 4,
-        "comments": "Ótimo jogo para todas as idades."
+        "comments": "Ótimo jogo para todas as idades.",
+        "userId": 4,
+        "userName": "maria"
       },
       {
         "id": 3,
         "rate": "5",
-        "comments": "Muito bom!!"
+        "comments": "Muito bom!!",
+        "userId": 5,
+        "userName": "joao"
+      }
+    ],
+    "users": [
+      {
+        "id": 3,
+        "name": "jhonatasa"
+      },
+      {
+        "id": 4,
+        "name": "maria"
+      },
+      {
+        "id": 5,
+        "name": "joao"
       }
     ]
   },
@@ -49,12 +83,26 @@
       {
         "id": 1,
         "rate": 5,
-        "comments": "Melhor jogo de mundo aberto!"
+        "comments": "Melhor jogo de mundo aberto!",
+        "userId": 3,
+        "userName": "jhonatasa"
       },
       {
         "id": 2,
         "rate": 4,
-        "comments": "Gráficos incríveis e história envolvente."
+        "comments": "Gráficos incríveis e história envolvente.",
+        "userId": 4,
+        "userName": "maria"
+      }
+    ],
+    "users": [
+      {
+        "id": 3,
+        "name": "jhonatasa"
+      },
+      {
+        "id": 4,
+        "name": "maria"
       }
     ]
   },
@@ -67,7 +115,15 @@
       {
         "id": 1,
         "rate": 4,
-        "comments": "Muito divertido!!"
+        "comments": "Muito divertido!!",
+        "userId": 4,
+        "userName": "maria"
+      }
+    ],
+    "users": [
+      {
+        "id": 4,
+        "name": "maria"
       }
     ]
   },
@@ -76,13 +132,41 @@
     "name": "Fall Guys",
     "description": "Fall Guys é um jogo eletrônico de plataforma battle royale desenvolvido pela Mediatonic. Foi lançado pela Devolver Digital para Microsoft Windows e PlayStation 4 em 4 de agosto de 2020.",
     "url_image": "https://cdn2.unrealengine.com/egs-fallguys-mediatonic-g1a-00-1920x1080-75b891d04ff9.jpg",
-    "evaluations": []
+    "evaluations": [
+      {
+        "id": 3,
+        "rate": "5",
+        "comments": "Muito bom pra passar o tempo.",
+        "userId": 3
+      }
+    ]
   },
   {
     "id": 1720478695782,
     "name": "Among Us",
     "description": "Among Us é um jogo eletrônico online, dos gêneros jogo em grupo e sobrevivência, desenvolvido e publicado pelo estúdio de jogos estadunidense InnerSloth.",
     "url_image": "https://sm.ign.com/ign_br/cover/a/among-us/among-us_8kks.jpg",
-    "evaluations": []
+    "evaluations": [
+      {
+        "id": 1,
+        "rate": "4",
+        "comments": "Muito divertido pra jogar com os amigos!!",
+        "userId": 5,
+        "userName": "joao"
+      },
+      {
+        "id": 2,
+        "rate": "5",
+        "comments": "Adorei o jogo!",
+        "userId": 3,
+        "userName": "jhonatasa"
+      }
+    ],
+    "users": [
+      {
+        "id": 5,
+        "name": "joao"
+      }
+    ]
   }
 ]
