@@ -28,5 +28,11 @@
     "username": "joao",
     "email": "joao@gmail.com",
     "password": "$2b$10$Rl4yCmEj3VWPs6NDinf8x.zVxdaoQ4dtsO1ajItNceN11KfAkE3tm"
+  },
+  {
+    "id": 6,
+    "username": "Guilherme Schmidt",
+    "email": "gui_lherme.27@hotmail.com",
+    "password": "$2b$10$prvdz5ZIGgWKBqBl74d6i.voQ2Hdl2EcRYnoro/a0Y4cdf7IoX0Rm"
   }
 ]
