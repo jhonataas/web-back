@@ -113,15 +113,87 @@ router.get('/games/:id', autenticarToken, (req, res) => {
 router.post('/games/:id/evaluations', autenticarToken, (req, res) => {
     const gameId = Number(req.params.id);
     const game = games.find(g => g.id === gameId);
+    const userId = req.user.id;
+    const userName = req.user.username;
+
     if (!game) {
         return res.status(404).json({ message: 'Game not found' });
     }
+
     const { rate, comments } = req.body;
-    const newEvaluation = { id: game.evaluations.length + 1, rate, comments };
+
+    const newEvaluation = {
+        id: game.evaluations.length + 1,
+        rate,
+        comments,
+        userId,
+        userName
+    };
+
     game.evaluations.push(newEvaluation);
+
     fs.writeFileSync(bdPath, JSON.stringify(games, null, 2));
+
     res.status(201).json(newEvaluation);
 });
+
+router.put('/evaluations/:id', autenticarToken, (req, res) => {
+    const evaluationId = parseInt(req.params.id);
+    const userId = req.user.id;
+    const { rate, comments } = req.body;
+
+    fs.readFile(dataFilePath, (err, data) => {
+        if (err) return res.status(500).json({ error: 'Erro ao ler o arquivo de dados' });
+        const db = JSON.parse(data);
+        let evaluationFound = false;
+
+        db.games.forEach(game => {
+            const evaluation = game.evaluations.find(e => e.id === evaluationId);
+            if (evaluation) {
+                if (evaluation.userId !== userId) return res.status(403).json({ error: 'Usuário não autorizado' });
+                evaluation.rate = rate;
+                evaluation.comments = comments;
+                evaluationFound = true;
+            }
+        });
+
+        if (!evaluationFound) return res.status(404).json({ error: 'Avaliação não encontrada' });
+
+        fs.writeFile(dataFilePath, JSON.stringify(db, null, 2), (err) => {
+            if (err) return res.status(500).json({ error: 'Erro ao salvar a avaliação' });
+            res.json({ message: 'Avaliação atualizada com sucesso' });
+        });
+    });
+});
+
+router.delete('/evaluations/:id', autenticarToken, (req, res) => {
+    const evaluationId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    fs.readFile(dataFilePath, (err, data) => {
+        if (err) return res.status(500).json({ error: 'Erro ao ler o arquivo de dados' });
+        const db = JSON.parse(data);
+        let evaluationFound = false;
+
+        db.games.forEach(game => {
+            const evaluationIndex = game.evaluations.findIndex(e => e.id === evaluationId);
+            if (evaluationIndex !== -1) {
+                const evaluation = game.evaluations[evaluationIndex];
+                if (evaluation.userId !== userId) return res.status(403).json({ error: 'Usuário não autorizado' });
+                game.evaluations.splice(evaluationIndex, 1);
+                evaluationFound = true;
+            }
+        });
+
+        if (!evaluationFound) return res.status(404).json({ error: 'Avaliação não encontrada' });
+
+        fs.writeFile(dataFilePath, JSON.stringify(db, null, 2), (err) => {
+            if (err) return res.status(500).json({ error: 'Erro ao salvar a avaliação' });
+            res.json({ message: 'Avaliação removida com sucesso' });
+        });
+    });
+});
+
 
 
 function autenticarToken(req,res,next){

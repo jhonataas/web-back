@@ -86,6 +86,30 @@ router.post('/create', async (req,res) => {
     res.send(`Tudo certo usuario criado com sucesso. id=${id}`);
 });
 
+router.get('/me', autenticarToken, (req, res) => {
+    const user = usuariosCadastrados.find(user => user.id === req.user.id);
+    if (!user) {
+        return res.status(404).send('Usuário não encontrado.');
+    }
+    res.status(200).json({ id: user.id, username: user.username });
+});
+
+function autenticarToken(req,res,next){
+    const authH = req.headers['authorization'];
+    const token = authH && authH.split(' ')[1];
+    if(token === null) return res.status(401).send('Token não encontrado');
+    
+    //verificando o token
+    try {
+        const user = jwt.verify(token, process.env.TOKEN);
+        req.user = user;
+        next(); //Se token é válido, avança chamando next()
+    } catch (error) {
+        res.status(403).send('Token inválido');
+    }
+   
+}
+
 module.exports = router;
 
 //Gerando token de acesso secreto com node
